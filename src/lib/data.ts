@@ -168,7 +168,7 @@ export async function getSysData(
         sys: frontmatter.sys || "Not specified",
         sys_ver: frontmatter.sys_ver,
         sys_var: frontmatter.sys_var,
-        status: frontmatter.status || "Not specified",
+        status: frontmatter.status.toUpperCase(),
         last_update: frontmatter.last_update || "Not specified",
         dir: sysDir,
         boardDir: boardDir,
@@ -198,10 +198,10 @@ function extractFrontmatter(content: string): Record<string, any> | null {
   // Extract the frontmatter section between --- markers
   const frontmatterMatch = content.match(/^---\s*\n([\s\S]*?)\n---/);
   if (!frontmatterMatch) return null;
-  
+
   const frontmatter: Record<string, any> = {};
   const frontmatterText = frontmatterMatch[1];
-  
+
   // Process each line to extract key-value pairs
   const lines = frontmatterText.split("\n");
   for (const line of lines) {
@@ -209,12 +209,12 @@ function extractFrontmatter(content: string): Record<string, any> | null {
     if (keyValueMatch) {
       const key = keyValueMatch[1].trim();
       const value = keyValueMatch[2].trim();
-      
+
       // Handle special values
-      frontmatter[key] = (value === "null" || value === "") ? null : value;
+      frontmatter[key] = value === "null" || value === "" ? null : value;
     }
   }
-  
+
   return frontmatter;
 }
 
