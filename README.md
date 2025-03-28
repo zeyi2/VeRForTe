@@ -1,5 +1,7 @@
 # VeRForTe
 
+RISC-V Board and OS Support Matrix Website
+
 ## Develop
 
 ```bash
@@ -12,3 +14,6 @@ pnpm install
 pnpm run dev
 ```
 
+## License
+
+Apache License 2.0
